@@ -1,0 +1,19 @@
+<%= form_for @user do | user | %>
+  <%= user.label :username %>
+  <%= user.text_field :username %>
+
+  <%= user.label :email %>
+  <%= user.email_field :email %>
+
+  <%= user.label :password %>
+  <%= user.password_field :password %>
+
+  <%= user.label :password_confirmation %>
+  <%= user.password_field :password_confirmation %>
+
+  <% if action_name != "new" %>
+    <%= user.file_field :avatar %>
+  <% end %>
+
+  <%= user.submit action_name == "new" ? "Register" : "Submit" , class: "btn btn-primary" %>
+<% end %>

@@ -4,7 +4,10 @@ class User < ApplicationRecord
 
   before_create :create_digest
   after_create :registration_mail
-  
+
+  has_attached_file :avatar
+  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg"]
+
   def self.new_token
     SecureRandom.urlsafe_base64
   end

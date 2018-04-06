@@ -1,15 +1,2 @@
-<%= form_for @user, url: users_path(@user) do | user | %>
-  <%= user.label :username %>
-  <%= user.text_field :username %>
+<%= render "form" %>
 
-  <%= user.label :email %>
-  <%= user.email_field :email %>
-
-  <%= user.label :password %>
-  <%= user.password_field :password %>
-
-  <%= user.label :password_confirmation %>
-  <%= user.password_field :password_confirmation %>
-
-  <%= user.submit "register", class: "btn btn-primary" %>
-<% end %>
