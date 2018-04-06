@@ -1,0 +1,9 @@
+<%= form_for @session, url: login_path do | user | %>
+  <%= user.label :email %>
+  <%= user.email_field :email %>
+
+  <%= user.label :password %>
+  <%= user.password_field :password %>
+
+  <%= user.submit "login", class: "btn btn-primary" %>
+<% end %>

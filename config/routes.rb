@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'users/edit'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users
+  get     '/login',         to: 'sessions#new'
+  get     '/activate/:id',  to: 'users#activate', :as => :activate
+  post    '/login',         to: 'sessions#create'
+  delete  '/logout',        to: 'sessions#destroy'
+  root :to => 'users#new'
 end
