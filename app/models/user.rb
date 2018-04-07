@@ -23,6 +23,15 @@ class User < ApplicationRecord
   def registration_mail
     UserMailer.activation_mail(self).deliver_now
   end
+
+  def following_tweet
+    following_ids = "select user_id from follows where followers_id = #{id}"
+    Tweet.where("user_id in (#{following_ids}) or user_id = ?", id)
+  end
+
+  def self_tweet
+    Tweet.where(:user_id => id)
+  end
   
   def total_tweet
     tweet.where(:user_id => id).count

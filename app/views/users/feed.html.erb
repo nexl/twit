@@ -14,7 +14,7 @@
     <% end %>
     </div>
 
-    <% @tweets.each do | tweet | %>
+    <% @user.following_tweet.each do | tweet | %>
       <%= render :partial => "tweet", :object => tweet %>
     <% end %>
   </div>

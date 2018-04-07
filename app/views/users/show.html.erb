@@ -1,7 +1,7 @@
 <div class="row">
   <%= render :partial => "user_badge",  :object => @user %>
   <div class="col-sm-6">
-    <% @user_tweets.each do | tweet | %>
+    <% @user.self_tweet.each do | tweet | %>
       <%= render :partial => "tweet", :object => tweet %>
     <% end %>
   </div>
