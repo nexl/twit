@@ -1,3 +1,25 @@
-<% @tweets.each do | tweet | %>
-  <p><%= tweet.user.username %> - <%= tweet.message %></p>
-<% end %>
+<div class="row">
+  <%= render :partial => "user_badge",  :object => @user %>
+
+  <div class="col-sm-6">  
+    <div class="row tweet-form">
+    <%= form_for @new_tweet do | tweet | %>
+      <div class="col-sm-8">
+        <%= tweet.text_area :message, :class => "form-control" %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= tweet.submit "tweet ! " , class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    </div>
+
+    <% @tweets.each do | tweet | %>
+      <%= render :partial => "tweet", :object => tweet %>
+    <% end %>
+  </div>
+
+  <div class="col-sm-2">
+    <p>Your ads here</p>
+  </div>
+</div>

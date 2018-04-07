@@ -1,19 +1,44 @@
-<%= form_for @user do | user | %>
-  <%= user.label :username %>
-  <%= user.text_field :username %>
+<%= form_for @user, :html => {:class =>  "form-horizontal" } do | user | %>
+  <div class="form-group">
+    <%= user.label :username, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= user.text_field :username, :class => "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= user.label :email, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= user.email_field :email, :class => "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= user.label :password, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= user.password_field :password, :class => "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= user.label :password_confirmation, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= user.password_field :password_confirmation, :class => "form-control" %>
+    </div>
+  </div>
 
-  <%= user.label :email %>
-  <%= user.email_field :email %>
-
-  <%= user.label :password %>
-  <%= user.password_field :password %>
-
-  <%= user.label :password_confirmation %>
-  <%= user.password_field :password_confirmation %>
-
-  <% if action_name != "new" %>
-    <%= user.file_field :avatar %>
+  <% if action_name == "edit" %>
+    <div class="form-group">
+      <%= user.label :avatar, :class => "control-label col-sm-2" %>
+      <div class="col-sm-6">
+        <%= user.file_field :avatar, :class => "form-control" %>
+      </div>
+    </div>
   <% end %>
-
-  <%= user.submit action_name == "new" ? "Register" : "Submit" , class: "btn btn-primary" %>
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-6">
+      <%= user.submit action_name == "new" ? "Register" : "Submit" , class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>

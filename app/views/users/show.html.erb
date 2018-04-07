@@ -1,23 +1,10 @@
 <%= link_to "logout", logout_path, :method => :delete %>
-This is user show
-<br>
 
-<% if @is_follow.nil? %>
-  <%= link_to "Follow this user", follows_path(:user_id => params[:id]), method: :post %>
-<% else %>
-  <%= link_to "Unfollow", follow_path(:user_id => params[:id]), method: :delete %>
-<% end %>
-
-<br>
-<%= form_for @tweet do | tweet | %>
-  <%= tweet.label :message %>
-  <%= tweet.text_field :message %>
-
-  <%= tweet.submit "tweet ! " , class: "btn btn-primary" %>
-<% end %>
-
-<hr>
-<h3>Tweet list</h3>
-<% @user_tweets.each do | tweet | %>
-  <p><%= tweet.message %></p>
-<% end %>
+<div class="row">
+  <%= render :partial => "user_badge",  :object => @user %>
+  <div class="col-sm-6">
+    <% @user_tweets.each do | tweet | %>
+      <%= render :partial => "tweet", :object => tweet %>
+    <% end %>
+  </div>
+</div>
