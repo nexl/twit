@@ -33,6 +33,15 @@ class UsersController < ApplicationController
     @is_follow = Follow.find_by_user_id_and_followers_id(params[:id], current_user.id)
   end
 
+  def feed
+    @tweets = Tweet.followed_tweet(current_user.id)
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:email, :username, :password, :password_confirmation, :avatar)
+  end
+
   def activate
     user = User.find_by_register_digest(params[:id])
     if user.present?
@@ -41,10 +50,5 @@ class UsersController < ApplicationController
     else
       redirect_to root_path
     end
-  end
-
-  private
-  def user_params
-    params.require(:user).permit(:email, :username, :password, :password_confirmation, :avatar)
   end
 end
