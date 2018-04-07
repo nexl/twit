@@ -25,7 +25,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <% if action_name == "show" && controller_name =="user" %>
+      <% if action_name == "show" && controller_name =="users" %>
         <% if @is_follow.nil? %>
           <%= link_to "Follow this user", follows_path(:user_id => params[:id]), method: :post %>
         <% else %>
