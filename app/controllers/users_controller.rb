@@ -27,6 +27,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @tweet = Tweet.new
+    @user_tweets = Tweet.user_tweet(params[:id])
   end
 
   def activate

@@ -1,2 +1,16 @@
 <%= link_to "logout", logout_path, :method => :delete %>
 This is user show
+<br>
+
+<%= form_for @tweet do | tweet | %>
+  <%= tweet.label :message %>
+  <%= tweet.text_field :message %>
+
+  <%= tweet.submit "tweet ! " , class: "btn btn-primary" %>
+<% end %>
+
+<hr>
+<h3>Tweet list</h3>
+<% @user_tweets.each do | tweet | %>
+  <p><%= tweet.message %></p>
+<% end %>
