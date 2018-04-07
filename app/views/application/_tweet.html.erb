@@ -1,6 +1,6 @@
 <div class="row tweet">
   <div class="col-sm-2">
-    <a href="<%= user_path(@user)%>">
+    <a href="<%= user_path(tweet.user)%>">
       <%= image_tag tweet.user.avatar.url, :class => "avatar" %>
     </a>
   </div>
