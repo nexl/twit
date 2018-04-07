@@ -1,4 +1,6 @@
 class FollowsController < ApplicationController
+  before_action :require_login 
+  
   def create
     user = User.find(params[:user_id])
     follow = Follow.new(:user_id => user.id, :followers_id => current_user.id)
