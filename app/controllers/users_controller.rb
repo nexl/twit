@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_tweets = Tweet.user_tweet(params[:id])
-    @is_follow = Follow.find_by_user_id_and_followers_id(params[:id], current_user.id)
+    @is_follow = Follow.find_by_user_id_and_followers_id(params[:id], current_user.id) if current_user
   end
 
   def feed

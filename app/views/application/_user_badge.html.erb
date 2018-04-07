@@ -25,8 +25,9 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <% if action_name == "show" && controller_name =="users" %>
-        <% if @is_follow.nil? %>
+      <% if action_name == "show" && controller_name =="users" && @current_user %>
+        <% if @current_user.id.to_i == params[:id].to_i %>
+        <% elsif @is_follow.nil? %>
           <%= link_to "Follow this user", follows_path(:user_id => params[:id]), method: :post %>
         <% else %>
           <%= link_to "Unfollow", follow_path(:user_id => params[:id]), method: :delete %>
