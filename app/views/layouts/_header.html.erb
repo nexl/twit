@@ -1,1 +1,7 @@
-this is header
+<header>
+  <% if @current_user %>
+    <%= link_to "logout", logout_path, :method => :delete, :class =>"btn btn-primary" %>
+  <% else %>
+    <%= link_to "login", login_path, :class =>"btn btn-primary" %>
+  <% end %>
+</header>
