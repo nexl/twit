@@ -5,7 +5,7 @@
     <div class="row tweet-form">
     <%= form_for @new_tweet do | tweet | %>
       <div class="col-sm-8">
-        <%= tweet.text_area :message, :class => "form-control" %>
+        <%= tweet.text_area :message, :class => "form-control", :required => true %>
       </div>
 
       <div class="col-sm-2">
