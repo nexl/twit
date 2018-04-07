@@ -23,5 +23,4 @@ class User < ApplicationRecord
   def registration_mail
     UserMailer.activation_mail(self).deliver_now
   end
-
 end
