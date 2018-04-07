@@ -23,4 +23,16 @@ class User < ApplicationRecord
   def registration_mail
     UserMailer.activation_mail(self).deliver_now
   end
+  
+  def total_tweet
+    tweet.where(:user_id => id).count
+  end
+
+  def total_followers
+    followers.count
+  end
+
+  def total_following
+    following.count
+  end
 end
