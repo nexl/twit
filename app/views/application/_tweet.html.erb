@@ -1,11 +1,15 @@
 <div class="row tweet">
   <div class="col-sm-2">
-    <%= image_tag tweet.user.avatar.url, :class => "avatar" if tweet.user.avatar.present?%>
+    <a href="<%= user_path(@user)%>">
+      <%= image_tag tweet.user.avatar.url, :class => "avatar" if tweet.user.avatar.present?%>
+    </a>
   </div>
 
   <div class="col-sm-10">
     <div class="row">
-      <%= tweet.user.username %> - <%= tweet.created_at.to_date %>
+      <a href="<%= user_path(@user)%>" class="link-user">
+        <%= tweet.user.username %> - <%= tweet.created_at.to_date %>
+      </a>
     </div>
 
     <div class="row">
