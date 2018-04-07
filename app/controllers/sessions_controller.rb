@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email])
     if user && user.authenticate(params[:session][:password]) && user.activate
       helpers.login(user)
-      redirect_to user_path(user)
+      redirect_to feed_path
     else
       render 'new'
     end
