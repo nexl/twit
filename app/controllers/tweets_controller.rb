@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     if @tweet.save
-      redirect_to feed_path
+      redirect_to root_path
     else
       redirect_to root_path
     end
