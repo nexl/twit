@@ -10,7 +10,7 @@
 
   <body>
     <div class="container"">
-      <%= render "layouts/header" %>
+      <%= render "layouts/header" if @current_user %>
       <%= yield %>
     </div>
   </body>
