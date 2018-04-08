@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-     render :layout => 'apps'
+    render :layout => 'apps' 
   end
 
   def create
@@ -38,6 +38,15 @@ class UsersController < ApplicationController
   def feed
     @user = current_user
     @new_tweet = Tweet.new
+  end
+
+  def homepage
+    if logged_in?
+      render :action => 'feed'
+    else
+      @user = User.new
+      render :action => 'new'
+    end   
   end
 
   private
