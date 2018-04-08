@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :following, class_name: "Follow", :foreign_key => "followers_id"
 
   validates :email, :presence => true, :uniqueness => true
+  validates :username, :presence => true, :uniqueness => true
+  
   has_secure_password
 
   before_create :create_digest
@@ -26,11 +28,11 @@ class User < ApplicationRecord
 
   def following_tweet
     following_ids = "select user_id from follows where followers_id = #{id}"
-    Tweet.where("user_id in (#{following_ids}) or user_id = ?", id)
+    tweet.where("user_id in (#{following_ids}) or user_id = ?", id)
   end
 
   def self_tweet
-    Tweet.where(:user_id => id)
+    tweet.where(:user_id => id)
   end
   
   def total_tweet
