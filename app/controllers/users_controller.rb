@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :do_not_require_login, only: [:create]
   
   def new
-    @user = User.new
+    new_variables
   end
 
   def create
@@ -16,11 +16,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    find_variables
   end
 
   def update
-    @user = User.find(params[:id])
+    find_variables
     @user.update_attributes(user_params)
     if @user.save
       redirect_to user_path(@user.id)
@@ -30,20 +30,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    find_variables
     @is_follow = Follow.find_by_user_id_and_followers_id(params[:id], current_user.id) if current_user
   end
 
   def feed
-    @user = current_user
-    @new_tweet = Tweet.new
+    feed_variables
   end
 
   def homepage
     if logged_in?
+      feed_variables
       render :action => 'feed'
     else
-      @user = User.new
+      new_variables
       render :action => 'new'
     end   
   end
@@ -51,6 +51,19 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :username, :password, :password_confirmation, :avatar)
+  end
+
+  def feed_variables
+    @user = current_user
+    @new_tweet = Tweet.new
+  end
+
+  def new_variables
+    @user = User.new
+  end
+
+  def find_variables
+    @user = User.find(params[:id])
   end
 
   def activate
