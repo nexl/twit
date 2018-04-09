@@ -8,6 +8,11 @@ FactoryBot.define do
       email "kanako@mailinator.com"
       username "kanako"
     end
+    factory :activated_user do 
+      email "kako@mailinator.com"
+      username "kako"
+      activate true
+    end
   end
 
   factory :tweet do
