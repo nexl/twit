@@ -50,4 +50,8 @@ class User < ApplicationRecord
   def avatar_url
     avatar.url
   end
+
+  def user_url
+    Rails.application.routes.url_helpers.user_path(id)
+  end
 end

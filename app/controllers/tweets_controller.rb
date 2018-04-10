@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.json do 
         if @tweet.save
-          render :json => @tweet, :include => { :user => { :only => [:id, :username], :methods => :avatar_url } }
+          render :json => @tweet, :include => { :user => { :only => [:id, :username], :methods => [:avatar_url, :user_url] } }
         else
           render :json => { :errors => @tweet.errors.messages }, :status => 422
         end
