@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :do_not_require_login, only: [:create, :new]
+  before_action :require_login, only: [:destroy] 
+  
   def new; end
   
   def create

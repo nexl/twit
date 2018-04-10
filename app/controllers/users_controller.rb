@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:feed, :edit, :update] 
-  before_action :do_not_require_login, only: [:create]
+  before_action :require_login, only: [:feed, :edit, :update, :show] 
+  before_action :do_not_require_login, only: [:new, :create]
   
   def new
     new_variables
