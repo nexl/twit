@@ -16,14 +16,14 @@
   <div class="form-group">
     <%= user.label :password, :class => "control-label col-sm-2" %>
     <div class="col-sm-6">
-      <%= user.password_field :password, :class => "form-control", :required => true, :placeholder => "password" %>
+      <%= user.password_field :password, :class => "form-control", :placeholder => "password" %>
     </div>
   </div>
   
   <div class="form-group">
     <%= user.label :password_confirmation, :class => "control-label col-sm-2" %>
     <div class="col-sm-6">
-      <%= user.password_field :password_confirmation, :class => "form-control", :required => true, :placeholder => "password confirmation" %>
+      <%= user.password_field :password_confirmation, :class => "form-control", :placeholder => "password confirmation" %>
     </div>
   </div>
 
@@ -31,7 +31,7 @@
     <div class="form-group">
       <%= user.label :avatar, :class => "control-label col-sm-2" %>
       <div class="col-sm-6">
-        <%= user.file_field :avatar, :class => "form-control", :required => true %>
+        <%= user.file_field :avatar, :class => "form-control" %>
       </div>
     </div>
   <% end %>

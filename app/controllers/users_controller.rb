@@ -9,8 +9,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "Registration succes, please check your email"
       redirect_to root_path
     else
+      flash[:danger] =  @user.errors.full_messages.first
       render 'new'
     end
   end
@@ -23,8 +25,10 @@ class UsersController < ApplicationController
     find_variables
     @user.update_attributes(user_params)
     if @user.save
-      redirect_to user_path(@user.id)
+      flash[:success] = "Update success"
+      render 'edit'
     else
+      flash[:danger] =  @user.errors.full_messages.first
       render 'edit'
     end
   end
