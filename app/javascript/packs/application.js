@@ -1,8 +1,8 @@
 import Vue from 'vue/dist/vue.esm'
-import App from '../components/app.vue'
+import Router from 'vue-router'
 
 document.addEventListener('DOMContentLoaded', () => {
-   var my = new Vue({
+  var my = new Vue({
     el: '#tweet',
     data: {
       tweets: [
