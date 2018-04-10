@@ -36,6 +36,10 @@ class UsersController < ApplicationController
 
   def feed
     feed_variables
+    respond_to do |format|
+      format.html
+      format.json { render :json => @user.following_tweet, :include => { :user => {:only => [:username, :id], :methods => :avatar_url } } }
+    end
   end
 
   def homepage

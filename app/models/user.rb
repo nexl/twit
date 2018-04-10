@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   def following_tweet
     following_ids = "select user_id from follows where followers_id = #{id}"
-    tweet.where("user_id in (#{following_ids}) or user_id = ?", id)
+    Tweet.where("user_id in (#{following_ids}) or user_id = ?", id)
   end
 
   def self_tweet
@@ -45,5 +45,9 @@ class User < ApplicationRecord
 
   def total_following
     following.count
+  end
+
+  def avatar_url
+    avatar.url
   end
 end

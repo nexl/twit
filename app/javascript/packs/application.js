@@ -1,10 +1,54 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
+import Vue from 'vue/dist/vue.esm'
+import App from '../components/app.vue'
 
-console.log('Hello World from Webpacker')
+document.addEventListener('DOMContentLoaded', () => {
+   var my = new Vue({
+    el: '#tweet',
+    data: {
+      tweets: [
+      ],
+      newTweet: '',
+      userId: '',
+      userAvatar: ''
+    },
+    mounted: function(){
+      var temp = this;
+      $.ajax({
+        url: '/feed.json',
+        success: function(result){
+          temp.tweets = result;
+        },
+        error: function(){
+        }
+      })
+    },
+    methods: {
+      addTweet: function(){
+        var temp = this;
+        if(this.newTweet.length > 140){ 
+          alert("Should be 140")
+          this.newTweet = ""
+          return false;
+        }
+        $.ajax({
+          method: 'POST',
+          data:{
+            tweet: {
+              message: this.newTweet,
+              user_id: this.userId,
+            }
+          },
+          url: '/tweets.json',
+          success: function(result){
+            temp.tweets.unshift(result);
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText)
+          }
+        })
+        this.newTweet = ""
+      }
+    }
+  })
+
+})

@@ -1,12 +1,17 @@
 class TweetsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :require_login 
   
   def create
     @tweet = Tweet.new(tweet_params)
-    if @tweet.save
-      redirect_to root_path
-    else
-      redirect_to root_path
+    respond_to do |format|
+      format.json do 
+        if @tweet.save
+          render :json => @tweet, :include => { :user => { :only => :username } }
+        else
+          render :json => { :errors => @tweet.errors.messages }, :status => 422
+        end
+      end
     end
   end
 

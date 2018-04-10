@@ -1,19 +1,35 @@
-<div class="row tweet">
-  <div class="col-sm-2">
-    <a href="<%= user_path(tweet.user)%>">
-      <%= image_tag tweet.user.avatar.url, :class => "avatar" %>
-    </a>
-  </div>
+<div id="tweet">
+  <div class="row">
+    <div class="col-sm-8">
+      <input v-model="newTweet" v-on:keyup.enter="addTweet" placeholder="new tweet" type="=text" class="form-control">
+      <input v-model="userId" type="hidden" value="<%= @current_user.id %>">
+      <input v-model="userAvatar" type="hidden" value="<%= @current_user.avatar.url %>">
+    </div>
 
-  <div class="col-sm-10">
-    <div class="row">
-      <a href="<%= user_path(@user)%>" class="link-user">
-        <%= tweet.user.username %> - <%= tweet.created_at.to_date %>
+    <div class="col-sm-2">
+      <button v-on:click="addTweet" class="btn btn-primary" type="button">tweet!</button>
+    </div>
+  </div>
+  <br/>
+
+  <div class="row tweet" v-for="tweet in tweets">
+    <div class="col-sm-2">
+      <a href="#">
+        <% temp = "{{tweet.user.avatar_url }}" %>
+        <%= image_tag "https://www.notesmate.in/images/default-user.png", :class => "avatar" %>
       </a>
     </div>
 
-    <div class="row">
-      <p><%= tweet.message %></p>
+    <div class="col-sm-10">
+      <div class="row">
+        <a href="#" class="link-user">
+         {{tweet.user.username}} - {{tweet.created_at}}
+        </a>
+      </div>
+
+      <div class="row">
+        <p>{{tweet.message}}</p>
+      </div>
     </div>
   </div>
 </div>
