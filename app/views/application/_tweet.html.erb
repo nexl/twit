@@ -16,7 +16,7 @@
     <div class="col-sm-2">
       <a href="#">
         <% temp = "{{tweet.user.avatar_url }}" %>
-        <%= image_tag "https://www.notesmate.in/images/default-user.png", :class => "avatar" %>
+        <img class="avatar" v-bind:src="tweet.user.avatar_url">
       </a>
     </div>
 
