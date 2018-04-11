@@ -16,6 +16,10 @@ module Twit
         ENV[key.to_s] = value
       end if File.exists?(env_file)
     end
+    
+    config.generators do |g|
+      g.factory_bot false
+    end    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
