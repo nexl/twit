@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email])
     if user && user.authenticate(params[:session][:password]) && user.activate
       helpers.login(user)
-      redirect_to feed_path
+      redirect_to root_path
     else
       flash[:danger] =  "Please check your email / password and try again"
       render 'new'
@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to login_path
+    redirect_to root_path
   end
 end
