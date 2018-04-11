@@ -12,55 +12,57 @@
       </div>
     </div>
     <br/>
+    <div v-if="loading">loading ... please wait </div>
+    <div v-else>
+      <div class="row tweet" v-for="tweet in tweets">
 
-    <div class="row tweet" v-for="tweet in tweets">
-
-      <div class="col-sm-2">
-        <a v-bind:href="tweet.user.user_url" class="link-user">
-          <img class="avatar" v-bind:src="tweet.user.avatar_url">
-        </a>
-      </div>
-
-      <div class="col-sm-10">
-        <div class="row">
+        <div class="col-sm-2">
           <a v-bind:href="tweet.user.user_url" class="link-user">
-           {{tweet.user.username}} - {{tweet.created_at_format}}
+            <img class="avatar" v-bind:src="tweet.user.avatar_url">
           </a>
         </div>
 
-        <div class="row">
-          <p>{{tweet.message}}</p>
-        </div>
-
-        <button v-on:click="writeComment(tweet)" class="btn btn-primary">write comment</button>
-        <button v-on:click="showComment(tweet)" class="btn btn-primary">show comment</button>
-        
-        <div v-if="newComment == tweet.id">
-          <input v-model="anotherTweet" v-on:keyup.enter="addComment(tweet)" placeholder="comment tweet" type="=text" class="form-control">
-        </div>
-        
-        <div v-if="detail == tweet.id">
-          <div class="row" v-for="comment in tweet.comment_tweet">
-            <div class="col-sm-2">
-            <a v-bind:href="comment.user.user_url" class="link-user">
-              <img class="avatar" v-bind:src="comment.user.avatar_url">
+        <div class="col-sm-10">
+          <div class="row">
+            <a v-bind:href="tweet.user.user_url" class="link-user">
+             {{tweet.user.username}} - {{tweet.created_at_format}}
             </a>
           </div>
 
-          <div class="col-sm-10">
-            <div class="row">
+          <div class="row">
+            <p>{{tweet.message}}</p>
+          </div>
+
+          <button v-on:click="writeComment(tweet)" class="btn btn-primary">write comment</button>
+          <button v-on:click="showComment(tweet)" class="btn btn-primary">show comment</button>
+          
+          <div v-if="newComment == tweet.id">
+            <input v-model="anotherTweet" v-on:keyup.enter="addComment(tweet)" placeholder="comment tweet" type="=text" class="form-control">
+          </div>
+          
+          <div v-if="detail == tweet.id">
+            <div class="row" v-for="comment in tweet.comment_tweet">
+              <div class="col-sm-2">
               <a v-bind:href="comment.user.user_url" class="link-user">
-               {{comment.user.username}} - {{comment.created_at_format}}
+                <img class="avatar" v-bind:src="comment.user.avatar_url">
               </a>
             </div>
 
-            <div class="row">
-              <p>{{comment.message}}</p>
+            <div class="col-sm-10">
+              <div class="row">
+                <a v-bind:href="comment.user.user_url" class="link-user">
+                 {{comment.user.username}} - {{comment.created_at_format}}
+                </a>
+              </div>
+
+              <div class="row">
+                <p>{{comment.message}}</p>
+              </div>
             </div>
+            <br>
           </div>
-          <br>
         </div>
-      </div>
+        </div>
       </div>
     </div>
   </div>
@@ -79,6 +81,7 @@ export default {
       detail: '',
       anotherTweet: '',
       userAvatar: '',
+      loading: true
     }
   },
   mounted(){
@@ -87,6 +90,7 @@ export default {
       url: '/feed.json',
       success(result){
         temp.tweets = result;
+        temp.loading = false;
       },
       error(xhr, ajaxOptions, thrownError){
         console.log(xhr.responseText);
