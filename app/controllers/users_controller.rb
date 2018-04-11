@@ -42,9 +42,9 @@ class UsersController < ApplicationController
     feed_variables
     respond_to do |format|
       format.html
-      format.json { render :json => @user.following_tweet, :include => [{ 
+      format.json { render :json => @user.following_tweet, :methods => :created_at_format, :include => [{ 
         :user => { :only => [:username, :id], :methods => [:avatar_url, :user_url]} }, 
-        :comment_tweet => {:include => { :user => { :only => [:username, :id], :methods => [:avatar_url, :user_url] } } }] }
+        :comment_tweet => {:methods => :created_at_format, :include => { :user => { :only => [:username, :id], :methods => [:avatar_url, :user_url] } } }] }
       end
   end
 

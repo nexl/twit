@@ -7,4 +7,8 @@ class Tweet < ApplicationRecord
 
   validates :message, :presence => true, :length => {:maximum => 140}
   validates :user_id, :presence => true
+  
+  def created_at_format
+    created_at.strftime('%d-%m-%Y %H:%M:%S')
+  end
 end
