@@ -12,7 +12,7 @@ class User < ApplicationRecord
   after_create :registration_mail
 
   has_attached_file :avatar, default_url: "default_avatar.png"
-  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg"]
+  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
   def self.new_token
     SecureRandom.urlsafe_base64

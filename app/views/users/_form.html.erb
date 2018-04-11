@@ -27,11 +27,11 @@
     </div>
   </div>
 
-  <% if action_name == "edit" %>
+  <% if action_name != "new" %>
     <div class="form-group">
       <%= user.label :avatar, :class => "control-label col-sm-2" %>
       <div class="col-sm-6">
-        <%= user.file_field :avatar, :class => "form-control" %>
+        <%= user.file_field :avatar, :class => "form-control", :accept => "image/jpg, image/jpeg, image/png" %>
       </div>
     </div>
   <% end %>
