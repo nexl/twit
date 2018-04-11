@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <% if action_name != "new" %>
+  <% if @current_user %>
     <div class="form-group">
       <%= user.label :avatar, :class => "control-label col-sm-2" %>
       <div class="col-sm-6">
