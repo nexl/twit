@@ -1,7 +1,9 @@
 <div class="row">
   <%= render :partial => "user_badge",  :object => @user %>
   <div class="col-sm-6">      
-    <%= render "feed_page" %>
+    <div id="apps">
+      <tweet></tweet>
+    </div>
   </div>
 
   <div class="col-sm-2">
@@ -9,4 +11,4 @@
   </div>
 </div>
 
-<%= javascript_pack_tag 'application' %>
+<%= javascript_pack_tag 'tweet' %>
