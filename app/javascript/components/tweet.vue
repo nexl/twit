@@ -34,7 +34,8 @@
           </div>
 
           <button v-on:click="writeComment(tweet)" class="btn btn-primary">write comment</button>
-          <button v-on:click="showComment(tweet)" class="btn btn-primary">show comment</button>
+
+          <button v-if="Object.keys(tweet.comment_tweet).length > 0" v-on:click="showComment(tweet)" class="btn btn-primary">show comment</button>
           
           <div v-if="newComment == tweet.id">
             <input v-model="anotherTweet" v-on:keyup.enter="addComment(tweet)" placeholder="comment tweet" type="=text" class="form-control">
