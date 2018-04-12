@@ -38,7 +38,7 @@
   
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-6">
-      <%= user.submit action_name == "new" ? "Register" : "Submit" , class: "btn btn-primary" %>
+      <%= user.submit @current_user ? "Submit" : "Register" , class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>
