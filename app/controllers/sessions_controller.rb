@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       helpers.login(user)
       redirect_to root_path
     else
-      flash[:danger] =  "Please check your email / password and try again"
+      flash[:danger] =  "Please check your email / password / verification code and try again"
       render 'new'
     end
   end
