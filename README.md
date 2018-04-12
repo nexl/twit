@@ -1,24 +1,34 @@
-# README
+# Twit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Twit is a simple twitter-app that allows user to:
+* Register
+* Follow and unfollow user
+* Tweet and comment a tweet
 
-Things you may want to cover:
+### Specs
+* Ruby 2.4.0
+* Rails 5.1.6
+* Vue 2.5.16
+* SQLite
 
-* Ruby version
+### Installation
 
-* System dependencies
+```sh
+cd ~/site
+$ git clone git@github.com:nexl/twit.git
+$ bundle install
+$ rake db:create
+$ rake db:migrate
+$ yarn install
+```
 
-* Configuration
+### Start local servers
+```sh
+rails s (backend / rails)
+bin/webpack-dev-server (frontend / webpack)
+```
 
-* Database creation
+### Settings 
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* config/database.yml -> database settings
+* config/local_env.yml -> email auth, default smtp setting is gmail
