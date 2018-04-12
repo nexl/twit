@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    return redirect_to login_path unless logged_in?
+    return redirect_to login_path unless logged_in? && current_user.activate
   end
   
   def do_not_require_login
