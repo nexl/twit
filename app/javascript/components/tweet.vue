@@ -18,7 +18,8 @@
 
         <div class="col-sm-2">
           <a v-bind:href="tweet.user.user_url" class="link-user">
-            <img class="avatar" v-bind:src="tweet.user.avatar_url">
+            <img class="avatar" v-bind:src="tweet.user.avatar_url" v-if="tweet.user.avatar_url != 'default_avatar.png'">
+            <img class="avatar" src="http://res.cloudinary.com/dspao5qq9/image/upload/v1523551250/default_iposxk.png" v-if="tweet.user.avatar_url == 'default_avatar.png'">
           </a>
         </div>
 
