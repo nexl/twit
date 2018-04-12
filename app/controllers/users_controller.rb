@@ -47,6 +47,16 @@ class UsersController < ApplicationController
         :comment_tweet => {:methods => :created_at_format, :include => { :user => { :only => [:username, :id], :methods => [:avatar_url, :user_url] } } }] }
       end
   end
+  
+  def activate
+    user = User.find_by_register_digest(params[:id])
+    if user.present?
+      user.activate = true
+      user.save
+    else
+      redirect_to root_path
+    end
+  end
 
   def homepage
     if logged_in?
@@ -74,15 +84,5 @@ class UsersController < ApplicationController
 
   def find_variables
     @user = User.find(params[:id])
-  end
-
-  def activate
-    user = User.find_by_register_digest(params[:id])
-    if user.present?
-      user.activate = true
-      user.save
-    else
-      redirect_to root_path
-    end
   end
 end
