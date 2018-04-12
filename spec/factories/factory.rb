@@ -1,16 +1,16 @@
 FactoryBot.define do
   factory :user do 
-    email "misora@mailinator.com"
-    username "misora"
+    sequence(:email) { |i| "misora#{i}@mailinator.com"}
+    sequence(:username) { |i| "misora#{i}"}
     password 'password'
     password_confirmation 'password'
     factory :another_user do 
       email "kanako@mailinator.com"
       username "kanako"
     end
-    factory :activated_user do 
-      email "kako@mailinator.com"
-      username "kako"
+    factory :activated_user do
+      sequence(:email) { |i| "kako#{i}@mailinator.com"}
+      sequence(:username) { |i| "kako#{i}"}
       activate true
     end
   end

@@ -14,7 +14,7 @@ RSpec.describe SessionsController, :type => :controller do
       fill_in "session_email", with: user.email
       fill_in "session_password", with: user.password
       click_button "Login"
-      expect(current_url).to eq(feed_url)
+      expect(page).to have_content "Followers"
     end
   end
 end
