@@ -10,7 +10,7 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "GET show" do
     let(:user) { FactoryBot.create :user }
-    before { get :show, :params => { id: user.id }, session: { 'user_id' => user.id, 'username' => user.username } }
+    before { get :show, :params => { id: user.id }, session: { :user_id => user.id, :username => user.username } }
     
     it "has a 200 status code" do 
       expect(response.status).to eq(200)
@@ -52,7 +52,7 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "GET edit" do
     let(:user) { FactoryBot.create(:user) }
-    before { get :edit, :params => { :id => user.id },  session: { 'user_id' => user.id, 'username' => user.username } }
+    before { get :edit, :params => { :id => user.id },  session: { "user_id" => user.id, "username" => user.username } }
     
     it "has a 200 status code" do
       expect(response).to have_http_status(:ok)
@@ -68,17 +68,17 @@ RSpec.describe UsersController, :type => :controller do
   end
 
   describe "PATCH update" do
-    let(:user) { FactoryBot.create(:activated_user) }
+    let(:user) { FactoryBot.create(:update_user) }
     
     it "saves updated user" do
-    #  expect { patch :update, :params => { :id => user.to_param, :user => { 'username' => 'sawako', 'email' => 'sawako@mailinator.com' } } , session: { 'user_id' => user.id, 'username' => user.username } }.to change(User, :count).by(0)
+      # expect { patch :update, :params => { :id => user.to_param, :user => { :username => 'sawako', :email => 'sawako@mailinator.com' } } , session: { :user_id => user.id, username => user.username } }.to change(User, :count).by(0)
     end
 
     it "updated user data" do
-      #patch :update, :params => { :id => user.to_param, :user => { 'username' => 'sawako', 'email' => 'sawako@mailinator.com' }, session: {  'user_id' => user.id, 'username' => user.username } } 
-      #user.reload
-      #expect(user.username).to eq "sawako"
-      #expect(user.email).to eq "sawako@mailinator.com"
+      # patch :update, :params => { :id => user.to_param, :user => { :username => 'sawako', :email => 'sawako@mailinator.com' }, session: {  :user_id => user.id, :username => user.username } } 
+      # user.reload
+      # expect(user.username).to eq "sawako"
+      # expect(user.email).to eq "sawako@mailinator.com"
     end
   end
 end

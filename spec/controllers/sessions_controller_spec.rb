@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe SessionsController, :type => :controller do
   describe "authentication" do
     render_views
-    let(:user) { FactoryBot.create(:activated_user) }
+    let(:user) { FactoryBot.create(:user) }
     
     before :each do
       @request.host = "www.example.com"

@@ -22,13 +22,13 @@ RSpec.describe User, :type => :model do
 
   it "duplicate email" do
     user = FactoryBot.create(:user)
-    user2 = FactoryBot.build(:another_user, email: "misora@mailinator.com")
+    user2 = FactoryBot.build(:user, email: user.email)
     expect(user2).to_not be_valid
   end
 
   it "duplicate username" do
     user = FactoryBot.create(:user)
-    user2 = FactoryBot.build(:another_user, username: "misora")
+    user2 = FactoryBot.build(:user, username: user.username)
     expect(user2).to_not be_valid
   end
 end
