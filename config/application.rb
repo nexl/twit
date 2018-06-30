@@ -9,6 +9,9 @@ Bundler.require(*Rails.groups)
 module Twit
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+
+    config.assets.initialize_on_precompile = false
+
     config.load_defaults 5.1
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
